@@ -1,4 +1,3 @@
-
 *,
 *::before,
 *::after {
@@ -13,7 +12,7 @@ body {
     color: white;
 }
 
-#campaign {
+#campaign-form {
     align-items: center;
 }
 
@@ -42,7 +41,6 @@ body {
     border-radius: 10px;
 }
 
-
 input[type="text"] {
     background: #ecf0f3;
     padding: 30px;
@@ -67,7 +65,6 @@ input[type="date"] {
 .buttons {
     display:block;
     margin-top: 10px;
-
 }
 
 .paid-decision { 

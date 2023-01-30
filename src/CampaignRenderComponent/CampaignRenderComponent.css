@@ -1,0 +1,53 @@
+.table-container {
+    margin-top: 200px;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    padding: 10px;
+    height: 200px;
+    width: 900px;
+}
+
+td {
+    padding: 5px 10px;
+}
+
+.campaign-title-head {
+    font-size: 22px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.campaign-parameters-head {
+    font-size: 22px;
+    font-weight: 500;
+    text-align: right;
+}
+
+.campaign-title-body {
+    font-size: 22px;
+    font-weight: 200;
+    text-align: left;
+}
+
+.campaign-parameters-body {
+    font-size: 22px;
+    font-weight: 200;
+    text-align: right;
+}
+
+#during-campaign-head {
+    text-align: left;
+}
+
+#description-campaign-head {
+    text-align: center;
+}
+
+#description-campaign-body {
+    text-align: left;
+}
+
+#during-campaign-body {
+    text-align: left;
+}
