@@ -13,6 +13,7 @@ body {
 }
 
 #campaign-form {
+    margin-top: 50px;
     align-items: center;
 }
 
@@ -39,6 +40,7 @@ body {
     width: 350px;
     height: 200px;
     border-radius: 10px;
+    font-size: 16px;
 }
 
 input[type="text"] {
@@ -92,4 +94,11 @@ input[type="date"] {
     color: white; 
     font-size: 22px;
     cursor: pointer;
+}
+
+.error {
+    display: block;
+    color: red;
+    font-weight: 400;
+    font-size: 22px;
 }

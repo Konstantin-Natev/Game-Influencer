@@ -1,11 +1,12 @@
 .table-container {
-    margin-top: 200px;
+    margin-top: 150px;
     background-color: white;
     color: black;
     border-radius: 10px;
     padding: 10px;
     height: 200px;
     width: 900px;
+    margin-bottom: 50px;
 }
 
 td {

@@ -1,34 +1,9 @@
 import { useState } from 'react';
 import './CampaignRenderComponent.css';
-// import TableRows from './TableRows';
+import TableRow from './TableRow';
 
+function CampaignRenderComponent({ campaigns }){
 
-const campaign = [{
-    title:'World of Warcraft',
-    description: 'Cool game!sdasdasdasdasd sdadasd asdasdsadsa sdasdasd asdasda asdad',
-    campaignStart: '01.01.2023',
-    campaignEnd: '01.31.2023',
-    budget: '1000',
-    paid: 'yes',
-    language: 'English',
-}];
-
-function CampaignRenderComponent(){
-    const [campaigns, setCampaigns] = useState(campaign);
-
-    const tableRows = campaigns.map((row) => {
-        return (
-            <tr>
-                <td className='campaign-title-body'>{row.title}</td>
-                <td id='description-campaign-body' className='campaign-parameters-body'>{row.description}</td>
-                <td id='during-campaign-body' className='campaign-parameters-body'>{row.campaignStart} - {row.campaignEnd}</td>
-                <td className='campaign-parameters-body'>{row.budget}</td>
-                <td className='campaign-parameters-body'>{row.paid}</td>
-                <td className='campaign-parameters-body'>{row.language}</td>
-            </tr>
-        );
-    });
-    
     return(
         <table className='table-container'> 
             <thead>
@@ -42,8 +17,7 @@ function CampaignRenderComponent(){
             </tr>
             </thead>
             <tbody>
-                {/* <TableRows campaign={campaigns}/> */}
-                {tableRows}
+                {campaigns.map( (row) => <TableRow key={row._id} campaign={row}/>)}
             </tbody>
         </table>
     );
