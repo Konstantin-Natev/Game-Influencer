@@ -98,6 +98,7 @@ input[type="date"] {
 
 .error {
     display: block;
+    margin-top: 10px;
     color: red;
     font-weight: 400;
     font-size: 22px;
