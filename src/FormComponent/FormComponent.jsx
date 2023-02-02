@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import './FormComponents.css'
 
 function FormComponent( {addCampaign} ){
     
-    const [campaignParametars, setCampaignParametars] = useState({
+    const [campaignParameters, setCampaignParameters] = useState({
         title: '',
         description: '',
         campaignStart: '',
@@ -12,82 +12,65 @@ function FormComponent( {addCampaign} ){
         paid: '',
         language: 'English',
     });  
-
-    const [error, setError] = useState({});
-
-    let isNoError = true;
-
-    useEffect(() =>{
-        console.log(error);
-        if(Object.keys(error).length === 0){
-            isNoError = true;
-        }else if(Object.keys(error).length >= 1){
-            isNoError = false;
-        }
-    },[error]);
+    
+    const [errors, setErrors] = useState({});
 
 
     const validate = (values) => {
-        const errors = {};
+        const error = {};
 
         if(!values.title){
-            errors.title = 'Campaign name field is require!';
-            isNoError = false;
+            error.title = 'Campaign name field is require!';
         }else if(values.title.length > 20){
-            errors.title = 'Campaign name must be 20 characters!';
-            isNoError = false;
+            error.title = 'Campaign name must be 20 characters!';
         }
 
         if(!values.description){
-            errors.description = 'Campaign description field is require!';
-            isNoError = false;
+            error.description = 'Campaign description field is require!';
         }else if(values.description.length > 200){
-            errors.title = 'Campaign name must be 20 characters!';
-            isNoError = false;
+            error.title = 'Campaign name must be 20 characters!';
         }
 
         if(!values.campaignStart){
-            errors.campaignStart = 'Start campaign date field is require!';
-            isNoError = false;
+            error.campaignStart = 'Start campaign date field is require!';
         }
 
         if(!values.campaignEnd){
-            errors.campaignEnd = 'End campaign date field is require!';
-            isNoError = false;
+            error.campaignEnd = 'End campaign date field is require!';
         }
 
         if(!values.budget){
-            errors.budget = 'Budget field is require!';
-            isNoError = false;
+            error.budget = 'Budget field is require!';
         }else if(Number(values.budget) > 10000){
-            errors.budge = 'Budget must be up to 10 000';
-            isNoError = false;
+            error.budge = 'Budget must be up to 10 000';
         }
 
         if(!values.paid){
-            errors.paid = 'Payment method is require!';
-            isNoError = false;
+            error.paid = 'Payment method is require!';
         }  
-        
-        return errors;        
+
+        return error;        
     };
 
     const handleValueChange = (e) =>{
         const name = e.target.name;
         const value = e.target.value;
 
-        setCampaignParametars({
-            ...campaignParametars,[name]:value
+        setCampaignParameters({
+            ...campaignParameters,[name]:value
         }); 
     };
 
     const onSubmitHeandler = (e) =>{
         e.preventDefault();
 
-        setError(validate(campaignParametars));
+        const innerErrors = validate(campaignParameters);
+        setErrors(innerErrors);
 
-        if (isNoError) {
-            addCampaign(campaignParametars);
+        console.log(Object.keys(errors).length );
+
+        if(!Object.keys(innerErrors).length){
+            addCampaign(campaignParameters);
         }
     };
 
@@ -98,22 +81,22 @@ function FormComponent( {addCampaign} ){
                 <h1>Game Campaign</h1>
   
                 <label htmlFor="name" className="label-title" >Name:</label>
-                <input  type="text" id="campaign-title" name="title"  placeholder="Enter game name..." value={campaignParametars.title} onChange={handleValueChange}/> 
-                <label className="error">{error.title}</label>
+                <input  type="text" id="campaign-title" name="title"  placeholder="Enter game name..." value={campaignParameters.title} onChange={handleValueChange}/> 
+                <label className="error">{errors.title}</label>
 
                 <label htmlFor="description" className="label-title" >Description:</label> 
-                <textarea id="campaign-description" name="description"  placeholder=" Enter game description..." value={campaignParametars.description} onChange={handleValueChange} ></textarea>
-                <label className="error">{error.description}</label>
+                <textarea id="campaign-description" name="description"  placeholder=" Enter game description..." value={campaignParameters.description} onChange={handleValueChange} ></textarea>
+                <label className="error">{errors.description}</label>
 
                 <label htmlFor="during" className="label-title" >During Campaign:</label>
-                <input type="date" id="campaign-start" name="campaignStart" value={campaignParametars.campaignStart} onChange={handleValueChange} min="1997-01-01" max="2030-12-31"/>
-                <label className="error">{error.campaignStart}</label>
-                <input type="date" id="campaign-start" name="campaignEnd"  value={campaignParametars.campaignEnd} onChange={handleValueChange} min="1997-01-02" max="2030-12-31"/>
-                <label className="error">{error.campaignEnd}</label>
+                <input type="date" id="campaign-start" name="campaignStart" value={campaignParameters.campaignStart} onChange={handleValueChange} min="1997-01-01" max="2030-12-31"/>
+                <label className="error">{errors.campaignStart}</label>
+                <input type="date" id="campaign-start" name="campaignEnd"  value={campaignParameters.campaignEnd} onChange={handleValueChange} min="1997-01-02" max="2030-12-31"/>
+                <label className="error">{errors.campaignEnd}</label>
 
                 <label htmlFor="budget" className="label-title" >Budget:</label>
-                <input type="text" id="campaign-budget" name="budget" placeholder="Enter campaign budget..." value={campaignParametars.budget} onChange={handleValueChange}/>
-                <label className="error">{error.budget}</label>
+                <input type="text" id="campaign-budget" name="budget" placeholder="Enter campaign budget..." value={campaignParameters.budget} onChange={handleValueChange}/>
+                <label className="error">{errors.budget}</label>
 
                 <label htmlFor="paid" className="label-title" >Paid with Crypto:</label>
                 <span className="buttons">
@@ -125,10 +108,10 @@ function FormComponent( {addCampaign} ){
                     <input type="radio" className="campaign-paid" name="paid" value="no" onChange={handleValueChange}/>
                     <label htmlFor="html" className="paid-decision">No</label>
                 </span>
-                <label className="error">{error.paid}</label>
+                <label className="error">{errors.paid}</label>
            
                 <label htmlFor="language" className="label-title" >Language:</label>
-                <select className="language-option" name="language" id="languages" form="languagesform" value={campaignParametars.language} onChange={handleValueChange}>
+                <select className="language-option" name="language" id="languages" form="languagesform" value={campaignParameters.language} onChange={handleValueChange}>
                     <option className="language-option" value="English">English</option>
                     <option className="language-option" value="German">German</option>
                     <option className="language-option" value="Spanish">Spanish</option>
