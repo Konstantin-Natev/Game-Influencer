@@ -1,4 +1,6 @@
-function TableRows ({ campaign }){
+import React from "react";
+
+function TableRows ({ campaign }: any){
 
     return (
         <tr>

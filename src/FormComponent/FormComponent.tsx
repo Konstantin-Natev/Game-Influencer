@@ -1,9 +1,32 @@
 import React, { useState } from "react";
 import './FormComponents.css'
 
-function FormComponent( {addCampaign} ){
-    
-    const [campaignParameters, setCampaignParameters] = useState({
+interface CampaignPattern {
+    _id: string,
+    title: string,
+    description: string,
+    campaignStart: string,
+    campaignEnd: string,
+    budget: string,
+    paid: string,
+    language: string,
+};
+
+type DeclareError = {
+    title: string,
+    description: string,
+    campaignStart: string,
+    campaignEnd: string,
+    budget: string,
+    paid: string,
+};
+
+
+
+function FormComponent( { addCampaign }: any ){
+
+    const campaignObj : CampaignPattern = {
+        _id: '',
         title: '',
         description: '',
         campaignStart: '',
@@ -11,13 +34,17 @@ function FormComponent( {addCampaign} ){
         budget: '',
         paid: '',
         language: 'English',
-    });  
+    }
+
+    const errorsParameters = {} as DeclareError;
+
+    const [campaignParameters, setCampaignParameters] = useState(campaignObj);  
     
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState(errorsParameters);
 
 
-    const validate = (values) => {
-        const error = {};
+    const validate = (values: any) => {
+        const error  = {} as DeclareError;
 
         if(!values.title){
             error.title = 'Campaign name field is require!';
@@ -42,7 +69,7 @@ function FormComponent( {addCampaign} ){
         if(!values.budget){
             error.budget = 'Budget field is require!';
         }else if(Number(values.budget) > 10000){
-            error.budge = 'Budget must be up to 10 000';
+            error.budget = 'Budget must be up to 10 000';
         }
 
         if(!values.paid){
@@ -52,7 +79,7 @@ function FormComponent( {addCampaign} ){
         return error;        
     };
 
-    const handleValueChange = (e) =>{
+    const handleValueChange = (e: any) =>{
         const name = e.target.name;
         const value = e.target.value;
 
@@ -61,13 +88,15 @@ function FormComponent( {addCampaign} ){
         }); 
     };
 
-    const onSubmitHeandler = (e) =>{
+    const onSubmitHeandler = (e: any) =>{
         e.preventDefault();
 
         const innerErrors = validate(campaignParameters);
         setErrors(innerErrors);
 
-        console.log(Object.keys(errors).length );
+        console.log(Object.keys(innerErrors).length);
+
+        // const isTrue = Object.values(innerErrors).forEach((x) => console.log(x))
 
         if(!Object.keys(innerErrors).length){
             addCampaign(campaignParameters);

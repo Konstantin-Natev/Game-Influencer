@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import './CampaignRenderComponent.css';
 import TableRow from './TableRow';
 
-function CampaignRenderComponent({ campaigns }){
+function CampaignRenderComponent({ campaigns }: any){
 
     return(
         <table className='table-container'> 
@@ -17,7 +16,7 @@ function CampaignRenderComponent({ campaigns }){
             </tr>
             </thead>
             <tbody>
-                {campaigns.map( (row) => <TableRow key={row._id} campaign={row}/>)}
+                {campaigns.map( (row : any) => <TableRow key={row._id} campaign={row}/>)}
             </tbody>
         </table>
     );
