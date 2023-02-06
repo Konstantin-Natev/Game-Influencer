@@ -1,16 +1,7 @@
 import React, { useState } from "react";
+import { CampaignPattern } from "../App";
 import './FormComponents.css'
 
-interface CampaignPattern {
-    _id: string,
-    title: string,
-    description: string,
-    campaignStart: string,
-    campaignEnd: string,
-    budget: string,
-    paid: string,
-    language: string,
-};
 
 type DeclareError = {
     title: string,
@@ -21,12 +12,10 @@ type DeclareError = {
     paid: string,
 };
 
-
-
 function FormComponent( { addCampaign }: any ){
 
     const campaignObj : CampaignPattern = {
-        _id: '',
+        id: '',
         title: '',
         description: '',
         campaignStart: '',
@@ -42,18 +31,19 @@ function FormComponent( { addCampaign }: any ){
     
     const [errors, setErrors] = useState(errorsParameters);
 
-
-    const validate = (values: any) => {
+    const validate = (values: CampaignPattern) => {
         const error  = {} as DeclareError;
 
         if(!values.title){
             error.title = 'Campaign name field is require!';
+
         }else if(values.title.length > 20){
             error.title = 'Campaign name must be 20 characters!';
         }
 
         if(!values.description){
             error.description = 'Campaign description field is require!';
+
         }else if(values.description.length > 200){
             error.title = 'Campaign name must be 20 characters!';
         }
@@ -67,7 +57,8 @@ function FormComponent( { addCampaign }: any ){
         }
 
         if(!values.budget){
-            error.budget = 'Budget field is require!';
+            error.budget = 'Budget field is require!';  
+
         }else if(Number(values.budget) > 10000){
             error.budget = 'Budget must be up to 10 000';
         }
@@ -79,24 +70,21 @@ function FormComponent( { addCampaign }: any ){
         return error;        
     };
 
-    const handleValueChange = (e: any) =>{
-        const name = e.target.name;
-        const value = e.target.value;
+    const handleValueChange = (event: any) =>{
+        const name = event.target.name;
+        const value = event.target.value;
 
         setCampaignParameters({
-            ...campaignParameters,[name]:value
+            ...campaignParameters,
+            [name]:value
         }); 
     };
 
-    const onSubmitHeandler = (e: any) =>{
-        e.preventDefault();
+    const onSubmitHeandler = (event: any) =>{
+        event.preventDefault();
 
         const innerErrors = validate(campaignParameters);
         setErrors(innerErrors);
-
-        console.log(Object.keys(innerErrors).length);
-
-        // const isTrue = Object.values(innerErrors).forEach((x) => console.log(x))
 
         if(!Object.keys(innerErrors).length){
             addCampaign(campaignParameters);

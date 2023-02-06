@@ -1,7 +1,8 @@
+import { CampaignPattern } from '../App';
 import './CampaignRenderComponent.css';
 import TableRow from './TableRow';
 
-function CampaignRenderComponent({ campaigns }: any){
+function CampaignRenderComponent({ campaigns }: {campaigns : CampaignPattern[]}){
 
     return(
         <table className='table-container'> 

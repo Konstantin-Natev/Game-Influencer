@@ -1,6 +1,6 @@
 import React from "react";
 
-function TableRows ({ campaign }: any){
+function TableRow ({ campaign }: any){
 
     return (
         <tr>
@@ -15,4 +15,4 @@ function TableRows ({ campaign }: any){
 
 }
 
-export default TableRows;
+export default TableRow;

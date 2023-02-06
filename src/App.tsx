@@ -4,8 +4,8 @@ import FormComponent from './FormComponent/FormComponent';
 import CampaignRenderComponent from './CampaignRenderComponent/CampaignRenderComponent';
 import React from 'react';
 
-interface CampaignPattern {
-  _id: string,
+export interface CampaignPattern {
+  id: string,
   title: string,
   description: string,
   campaignStart: string,
@@ -15,9 +15,8 @@ interface CampaignPattern {
   language: string,
 }; 
 
-
 const campaign : CampaignPattern = {
-  _id: '1',
+  id: '1',
   title:'World of Warcraft',
   description: 'Cool game!sdasdasdasdasd sdadasd asdasdsadsa sdasdasd asdasda asdad',
   campaignStart: '01.01.2023',
@@ -27,22 +26,11 @@ const campaign : CampaignPattern = {
   language: 'English',
 };
 
-const addCampaignPattern : CampaignPattern = {
-  _id: '',
-  title: '',
-  description: '',
-  campaignStart: '',
-  campaignEnd: '',
-  budget: '',
-  paid: '',
-  language: '',
-};
-
 function App() {
 
   const [campaigns, setCampaign] = useState([campaign]);
   
-  const addCampaign  = (addCampaignPattern : any)  =>{
+ const addCampaign  = (addCampaignPattern : CampaignPattern)  =>{
     setCampaign([
       ...campaigns,
       addCampaignPattern])
