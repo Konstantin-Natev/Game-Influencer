@@ -1,25 +1,29 @@
+import { Paper, styled, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import { CampaignPattern } from '../App';
 import './CampaignRenderComponent.css';
-import TableRow from './TableRow';
+import RowOfTable from './TableRows';
 
 function CampaignRenderComponent({ campaigns }: {campaigns : CampaignPattern[]}){
 
     return(
-        <table className='table-container'> 
-            <thead>
-            <tr>
-                <td className='campaign-title-head'>Campaign</td>
-                <td id='description-campaign-head' className='campaign-parameters-head'>Description</td>
-                <td id='during-campaign-head' className='campaign-parameters-head'>During</td>
-                <td className='campaign-parameters-head'>Buget</td>
-                <td className='campaign-parameters-head'>Paid</td>
-                <td className='campaign-parameters-head'>Language</td>
-            </tr>
-            </thead>
-            <tbody>
-                {campaigns.map( (row : any) => <TableRow key={row._id} campaign={row}/>)}
-            </tbody>
-        </table>
+        <TableContainer sx={{ width: 900 }} id='table-container' >
+            <Table  >
+                <TableHead >
+                    <TableRow >
+                        <TableCell sx={{fontSize: 22, fontWeight: 600}}>Campaign</TableCell>
+                        <TableCell sx={{fontSize: 22, fontWeight: 600, textAlign:"center"}}>Description</TableCell>
+                        <TableCell sx={{fontSize: 22, fontWeight: 600}}>During</TableCell>
+                        <TableCell sx={{fontSize: 22, fontWeight: 600}}>Budget</TableCell>
+                        <TableCell sx={{fontSize: 22, fontWeight: 600}}>Paid</TableCell>
+                        <TableCell sx={{fontSize: 22, fontWeight: 600}}>Language</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {campaigns.map( (row : any) => <RowOfTable key={row._id} campaign={row}/>)}
+                </TableBody>
+            </Table>
+        </TableContainer>
+
     );
 }
 

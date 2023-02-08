@@ -3,6 +3,7 @@ import './App.css';
 import FormComponent from './FormComponent/FormComponent';
 import CampaignRenderComponent from './CampaignRenderComponent/CampaignRenderComponent';
 import React from 'react';
+import { Grid } from '@mui/material';
 
 export interface CampaignPattern {
   id: string,
@@ -37,10 +38,15 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <Grid container xs={10} sm={11} lg={6} >
+      <Grid item  >
       <FormComponent addCampaign={addCampaign}/>
+      </Grid>
+
+      <Grid item >
       <CampaignRenderComponent campaigns={campaigns}/>
-    </div>
+      </Grid>
+    </Grid>
   );
 }
 

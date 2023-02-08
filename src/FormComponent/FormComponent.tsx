@@ -1,3 +1,6 @@
+import { Box, FormControlLabel, MenuItem, Radio, RadioGroup, Select, TextField, Typography } from "@mui/material";
+import TextareaAutosize from '@mui/base/TextareaAutosize';
+import Button from "@mui/material/Button";
 import React, { useState } from "react";
 import { CampaignPattern } from "../App";
 import './FormComponents.css'
@@ -80,7 +83,7 @@ function FormComponent( { addCampaign }: any ){
         }); 
     };
 
-    const onSubmitHeandler = (event: any) =>{
+    const onSubmitHandler = (event: any) =>{
         event.preventDefault();
 
         const innerErrors = validate(campaignParameters);
@@ -92,51 +95,111 @@ function FormComponent( { addCampaign }: any ){
     };
 
     return(
-        <form id="campaign-form" method='POST' onSubmit={onSubmitHeandler}>
+        <form id="campaign-form" method='POST' >
             <div className="container">
 
                 <h1>Game Campaign</h1>
-  
-                <label htmlFor="name" className="label-title" >Name:</label>
-                <input  type="text" id="campaign-title" name="title"  placeholder="Enter game name..." value={campaignParameters.title} onChange={handleValueChange}/> 
-                <label className="error">{errors.title}</label>
 
-                <label htmlFor="description" className="label-title" >Description:</label> 
-                <textarea id="campaign-description" name="description"  placeholder=" Enter game description..." value={campaignParameters.description} onChange={handleValueChange} ></textarea>
-                <label className="error">{errors.description}</label>
+                <Typography variant="h5" sx={{mt:3}}>Name:</Typography>
+                <TextField
+                    variant="standard"
+                    type="text"
+                    placeholder="Enter game name..."
+                    name="title"
+                    value={campaignParameters.title}
+                    onChange={handleValueChange}
+                    required
+                    InputProps={{
+                        disableUnderline: true,
+                      }}
+                />
+                <Typography variant="h6" color="error" sx={{mt:1}}>{errors.title}</Typography>
 
-                <label htmlFor="during" className="label-title" >During Campaign:</label>
-                <input type="date" id="campaign-start" name="campaignStart" value={campaignParameters.campaignStart} onChange={handleValueChange} min="1997-01-01" max="2030-12-31"/>
-                <label className="error">{errors.campaignStart}</label>
-                <input type="date" id="campaign-start" name="campaignEnd"  value={campaignParameters.campaignEnd} onChange={handleValueChange} min="1997-01-02" max="2030-12-31"/>
-                <label className="error">{errors.campaignEnd}</label>
-
-                <label htmlFor="budget" className="label-title" >Budget:</label>
-                <input type="text" id="campaign-budget" name="budget" placeholder="Enter campaign budget..." value={campaignParameters.budget} onChange={handleValueChange}/>
-                <label className="error">{errors.budget}</label>
-
-                <label htmlFor="paid" className="label-title" >Paid with Crypto:</label>
-                <span className="buttons">
-                    <input type="radio" className="campaign-paid" name="paid" value="yes" onChange={handleValueChange}/>
-                    <label htmlFor="html" className="paid-decision">Yes</label>
-                </span>
-
-                <span className="buttons">
-                    <input type="radio" className="campaign-paid" name="paid" value="no" onChange={handleValueChange}/>
-                    <label htmlFor="html" className="paid-decision">No</label>
-                </span>
-                <label className="error">{errors.paid}</label>
-           
-                <label htmlFor="language" className="label-title" >Language:</label>
-                <select className="language-option" name="language" id="languages" form="languagesform" value={campaignParameters.language} onChange={handleValueChange}>
-                    <option className="language-option" value="English">English</option>
-                    <option className="language-option" value="German">German</option>
-                    <option className="language-option" value="Spanish">Spanish</option>
-                    <option className="language-option" value="Japanese">Japanese</option>
-                </select>
+                <Typography variant="h5" sx={{mt:3}}>Description:</Typography>
+                <TextareaAutosize
+                    className="text-area"
+                    name="description"
+                    placeholder=" Enter game description..."
+                    value={campaignParameters.description}
+                    onChange={handleValueChange}
+                    style={{ width: 350, height:200}}
+                />
+                <Typography variant="h6" color="error" sx={{mt:1}}>{errors.description}</Typography>
                 
+                <Typography variant="h5" sx={{mt:3}}>During Campaign:</Typography>
+                <TextField
+                    variant="standard"
+                    type="date"
+                    name="campaignStart"
+                    value={campaignParameters.campaignStart}
+                    onChange={handleValueChange}
+                    required
+                    InputProps={{
+                        disableUnderline: true,
+                    }}
+                />
+                <Typography variant="h6" color="error" sx={{mt:1}}>{errors.campaignStart}</Typography>
 
-                <input type="submit" id="submit-btn" value="Submit Form"/>
+                <TextField
+                    variant="standard"
+                    type="date"
+                    name="campaignEnd"
+                    value={campaignParameters.campaignEnd}
+                    onChange={handleValueChange}
+                    required
+                    InputProps={{
+                        disableUnderline: true,
+                      }}
+                />
+                <Typography variant="h6" color="error" sx={{mt:1}}>{errors.campaignEnd}</Typography>
+
+                <Typography variant="h5" sx={{mt:3}}>Budget:</Typography>
+                <TextField
+                    variant="standard"
+                    type="text"
+                    name="budget"
+                    placeholder="Enter campaign budget..."
+                    value={campaignParameters.budget}
+                    onChange={handleValueChange}
+                    required
+                    InputProps={{
+                        disableUnderline: true,
+                    }}
+                />
+                <Typography variant="h6" color="error" sx={{mt:1}}>{errors.budget}</Typography>
+
+                <Typography variant="h5" sx={{mt:3}}>Paid with Crypto:</Typography>
+                <RadioGroup >
+                    <FormControlLabel className="campaign-paid" value="yes" name="paid" control={<Radio />} label="Yes" onChange={handleValueChange}/>
+                    <FormControlLabel className="campaign-paid" value="no" name="paid" control={<Radio />} label="No" onChange={handleValueChange}/>
+                </RadioGroup>
+                <Typography variant="h6" color="error" sx={{mt:1}}>{errors.paid}</Typography>
+           
+                <Typography variant="h5" sx={{mt:3}}>Language:</Typography>
+                <Select
+                    id="languages"
+                    name="language" 
+                    variant="standard"
+                    className="language-option"
+                    value={campaignParameters.language} 
+                    onChange={handleValueChange}    
+                    inputProps={{
+                        disableUnderline: true
+                    }}
+                >   
+                    <MenuItem className="language-option" value={"English"}>English</MenuItem>
+                    <MenuItem className="language-option" value={"German"}>German</MenuItem>
+                    <MenuItem className="language-option" value={"Spanish"}>Spanish</MenuItem>
+                    <MenuItem className="language-option" value={"Japanese"}>Japanese</MenuItem>
+                </Select>
+         
+                <Box
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                    >
+                        <Button type="submit" variant="contained" id="submit-btn" onClick={onSubmitHandler}>Submit</Button>
+                </Box>
             </div>
         </form>
     )

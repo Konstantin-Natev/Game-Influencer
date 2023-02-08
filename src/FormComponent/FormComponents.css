@@ -35,17 +35,9 @@ body {
     font-size: 25px;
 }
 
-#campaign-description {
-    margin-top: 10px;
-    width: 350px;
-    height: 200px;
-    border-radius: 10px;
-    font-size: 16px;
-}
-
 input[type="text"] {
     background: #ecf0f3;
-    padding: 30px;
+    padding: 10px;
     padding-left: 20px;
     height: 50px;
     margin-top: 10px;
@@ -53,10 +45,17 @@ input[type="text"] {
     border-radius: 50px;
 }
 
+.text-area {
+    background: #ecf0f3;
+    height: 200px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
 input[type="date"] {
     display: block;
     background: #ecf0f3;
-    padding: 20px;
+    padding: 10px;
     padding-left: 20px;
     height: 50px;
     margin-top: 10px;
@@ -68,6 +67,9 @@ input[type="date"] {
     display:block;
     margin-top: 10px;
 }
+.campaign-paid {
+    justify-content: center;
+}
 
 .paid-decision { 
     padding-left: 20px;
@@ -77,6 +79,11 @@ input[type="date"] {
 #languages {
     width:  300px;
     height: 30px;
+    background: #ecf0f3;
+    padding: 15px;  
+    margin-top: 10px;
+    font-size: 22px;
+    border-radius: 50px;    
 }
 
 .language-option {
@@ -93,7 +100,6 @@ input[type="date"] {
     border-radius: 50px;   
     color: white; 
     font-size: 22px;
-    cursor: pointer;
 }
 
 .error {
