@@ -5,13 +5,13 @@ import {
     TableContainer,
     TableHead,
     TableRow,
-} from '@mui/material';
-import { Campaign } from '../App';
-import RowOfTable from './TableRows';
+} from '@mui/material'
+import { Campaign } from '../App'
+import RowOfTable from './TableRows'
 import {
     campaignClasses as classes,
     StyledCampaign,
-} from './CampaignRenderComponentStyle';
+} from './CampaignRenderComponentStyle'
 
 function CampaignRenderComponent({ campaigns }: { campaigns: Campaign[] }) {
     return (
@@ -51,7 +51,7 @@ function CampaignRenderComponent({ campaigns }: { campaigns: Campaign[] }) {
                 </Table>
             </TableContainer>
         </StyledCampaign>
-    );
+    )
 }
 
-export default CampaignRenderComponent;
+export default CampaignRenderComponent

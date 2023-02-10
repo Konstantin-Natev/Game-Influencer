@@ -1,5 +1,5 @@
-import { Grid, styled } from '@mui/material';
-import { prefixClasses } from '../utils/utils';
+import { Grid, styled } from '@mui/material'
+import { prefixClasses } from '../utils/utils'
 
 const classes = {
     root: 'root',
@@ -7,9 +7,9 @@ const classes = {
     cellsHeader: 'cellsHeader',
     centerCellsBody: 'centerCellsBody',
     leftCellsBody: 'leftCellsBody',
-};
+}
 
-prefixClasses('CampaignRenderComponent', classes);
+prefixClasses('CampaignRenderComponent', classes)
 
 export const StyledCampaign = styled(Grid)(({ theme }) => ({
     [`& .${classes.tableContainer}`]: {
@@ -40,6 +40,6 @@ export const StyledCampaign = styled(Grid)(({ theme }) => ({
         fontWeight: 400,
         textAlign: 'left',
     },
-}));
+}))
 
-export const campaignClasses = classes;
+export const campaignClasses = classes

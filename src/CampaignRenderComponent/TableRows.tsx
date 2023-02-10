@@ -1,7 +1,7 @@
-import { TableCell, TableRow } from '@mui/material';
-import React from 'react';
-import { Campaign } from '../App';
-import { campaignClasses as classes } from './CampaignRenderComponentStyle';
+import { TableCell, TableRow } from '@mui/material'
+import React from 'react'
+import { Campaign } from '../App'
+import { campaignClasses as classes } from './CampaignRenderComponentStyle'
 
 function RowOfTable({ campaign }: { campaign: Campaign }) {
     return (
@@ -25,7 +25,7 @@ function RowOfTable({ campaign }: { campaign: Campaign }) {
                 {campaign.language}
             </TableCell>
         </TableRow>
-    );
+    )
 }
 
-export default RowOfTable;
+export default RowOfTable

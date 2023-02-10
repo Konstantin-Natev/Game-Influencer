@@ -1,19 +1,19 @@
-import { useState } from 'react';
-import './App.css';
-import FormComponent from './FormComponent/FormComponent';
-import CampaignRenderComponent from './CampaignRenderComponent/CampaignRenderComponent';
-import React from 'react';
-import { Grid, ThemeProvider } from '@mui/material';
+import { useState } from 'react'
+import './App.css'
+import FormComponent from './FormComponent/FormComponent'
+import CampaignRenderComponent from './CampaignRenderComponent/CampaignRenderComponent'
+import React from 'react'
+import { Grid, ThemeProvider } from '@mui/material'
 
 export interface Campaign {
-    id: string;
-    title: string;
-    description: string;
-    campaignStart: string;
-    campaignEnd: string;
-    budget: string;
-    paid: string;
-    language: string;
+    id: string
+    title: string
+    description: string
+    campaignStart: string
+    campaignEnd: string
+    budget: string
+    paid: string
+    language: string
 }
 
 const defaultCampaign: Campaign = {
@@ -26,14 +26,14 @@ const defaultCampaign: Campaign = {
     budget: '1000',
     paid: 'yes',
     language: 'English',
-};
+}
 
 function App() {
-    const [campaigns, setCampaign] = useState([defaultCampaign]);
+    const [campaigns, setCampaign] = useState([defaultCampaign])
 
     const addCampaign = (addCampaignPattern: Campaign) => {
-        setCampaign([...campaigns, addCampaignPattern]);
-    };
+        setCampaign([...campaigns, addCampaignPattern])
+    }
 
     return (
         <Grid container xs={10} sm={11} lg={6}>
@@ -44,7 +44,7 @@ function App() {
                 <CampaignRenderComponent campaigns={campaigns} />
             </Grid>
         </Grid>
-    );
+    )
 }
 
-export default App;
+export default App

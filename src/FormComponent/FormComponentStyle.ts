@@ -1,5 +1,5 @@
-import { Grid, styled } from '@mui/material';
-import { prefixClasses } from '../utils/utils';
+import { Grid, styled } from '@mui/material'
+import { prefixClasses } from '../utils/utils'
 
 const classes = {
     root: 'root',
@@ -13,9 +13,9 @@ const classes = {
     selectField: 'selectField',
     submitButton: 'submitButton',
     textError: 'textError',
-};
+}
 
-prefixClasses('FormComponent', classes);
+prefixClasses('FormComponent', classes)
 
 export const StyledForm = styled(Grid)(({ theme }) => ({
     [`&.${classes.root}`]: {
@@ -106,6 +106,6 @@ export const StyledForm = styled(Grid)(({ theme }) => ({
         fontWeight: '400',
         fontSize: '22px',
     },
-}));
+}))
 
-export const formClasses = classes;
+export const formClasses = classes

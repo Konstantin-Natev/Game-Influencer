@@ -8,20 +8,20 @@ import {
     Select,
     TextField,
     Typography,
-} from '@mui/material';
-import TextareaAutosize from '@mui/base/TextareaAutosize';
-import Button from '@mui/material/Button';
-import React, { useState } from 'react';
-import { Campaign } from '../App';
-import { formClasses as classes, StyledForm } from './FormComponentStyle';
+} from '@mui/material'
+import TextareaAutosize from '@mui/base/TextareaAutosize'
+import Button from '@mui/material/Button'
+import React, { useState } from 'react'
+import { Campaign } from '../App'
+import { formClasses as classes, StyledForm } from './FormComponentStyle'
 
 interface DeclareError {
-    title: string;
-    description: string;
-    campaignStart: string;
-    campaignEnd: string;
-    budget: string;
-    paid: string;
+    title: string
+    description: string
+    campaignStart: string
+    campaignEnd: string
+    budget: string
+    paid: string
 }
 
 function FormComponent({ addCampaign }: any) {
@@ -34,70 +34,70 @@ function FormComponent({ addCampaign }: any) {
         budget: '',
         paid: '',
         language: 'English',
-    };
+    }
 
-    const errorsParameters = {} as DeclareError;
+    const errorsParameters = {} as DeclareError
 
-    const [campaignParameters, setCampaignParameters] = useState(justCampaign);
+    const [campaignParameters, setCampaignParameters] = useState(justCampaign)
 
-    const [errors, setErrors] = useState(errorsParameters);
+    const [errors, setErrors] = useState(errorsParameters)
 
     const validate = (values: Campaign) => {
-        const error = {} as DeclareError;
+        const error = {} as DeclareError
 
         if (!values.title) {
-            error.title = 'Campaign name field is require!';
+            error.title = 'Campaign name field is require!'
         } else if (values.title.length > 20) {
-            error.title = 'Campaign name must be 20 characters!';
+            error.title = 'Campaign name must be 20 characters!'
         }
 
         if (!values.description) {
-            error.description = 'Campaign description field is require!';
+            error.description = 'Campaign description field is require!'
         } else if (values.description.length > 200) {
-            error.title = 'Campaign name must be 20 characters!';
+            error.title = 'Campaign name must be 20 characters!'
         }
 
         if (!values.campaignStart) {
-            error.campaignStart = 'Start campaign date field is require!';
+            error.campaignStart = 'Start campaign date field is require!'
         }
 
         if (!values.campaignEnd) {
-            error.campaignEnd = 'End campaign date field is require!';
+            error.campaignEnd = 'End campaign date field is require!'
         }
 
         if (!values.budget) {
-            error.budget = 'Budget field is require!';
+            error.budget = 'Budget field is require!'
         } else if (Number(values.budget) > 10000) {
-            error.budget = 'Budget must be up to 10 000';
+            error.budget = 'Budget must be up to 10 000'
         }
 
         if (!values.paid) {
-            error.paid = 'Payment method is require!';
+            error.paid = 'Payment method is require!'
         }
 
-        return error;
-    };
+        return error
+    }
 
     const handleValueChange = (event: any) => {
-        const name = event.target.name;
-        const value = event.target.value;
+        const name = event.target.name
+        const value = event.target.value
 
         setCampaignParameters({
             ...campaignParameters,
             [name]: value,
-        });
-    };
+        })
+    }
 
     const onSubmitHandler = (event: any) => {
-        event.preventDefault();
+        event.preventDefault()
 
-        const innerErrors = validate(campaignParameters);
-        setErrors(innerErrors);
+        const innerErrors = validate(campaignParameters)
+        setErrors(innerErrors)
 
         if (!Object.keys(innerErrors).length) {
-            addCampaign(campaignParameters);
+            addCampaign(campaignParameters)
         }
-    };
+    }
 
     return (
         <StyledForm className={classes.root} container>
@@ -274,7 +274,7 @@ function FormComponent({ addCampaign }: any) {
                 </Grid>
             </form>
         </StyledForm>
-    );
+    )
 }
 
-export default FormComponent;
+export default FormComponent
