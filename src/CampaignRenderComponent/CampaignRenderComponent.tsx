@@ -1,31 +1,57 @@
-import { Paper, styled, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import { CampaignPattern } from '../App';
-import './CampaignRenderComponent.css';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+} from '@mui/material';
+import { Campaign } from '../App';
 import RowOfTable from './TableRows';
+import {
+    campaignClasses as classes,
+    StyledCampaign,
+} from './CampaignRenderComponentStyle';
 
-function CampaignRenderComponent({ campaigns }: {campaigns : CampaignPattern[]}){
-
-    return(
-        <TableContainer sx={{ width: 900 }} id='table-container' >
-            <Table  >
-                <TableHead >
-                    <TableRow >
-                        <TableCell sx={{fontSize: 22, fontWeight: 600}}>Campaign</TableCell>
-                        <TableCell sx={{fontSize: 22, fontWeight: 600, textAlign:"center"}}>Description</TableCell>
-                        <TableCell sx={{fontSize: 22, fontWeight: 600}}>During</TableCell>
-                        <TableCell sx={{fontSize: 22, fontWeight: 600}}>Budget</TableCell>
-                        <TableCell sx={{fontSize: 22, fontWeight: 600}}>Paid</TableCell>
-                        <TableCell sx={{fontSize: 22, fontWeight: 600}}>Language</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {campaigns.map( (row : any) => <RowOfTable key={row._id} campaign={row}/>)}
-                </TableBody>
-            </Table>
-        </TableContainer>
-
+function CampaignRenderComponent({ campaigns }: { campaigns: Campaign[] }) {
+    return (
+        <StyledCampaign>
+            <TableContainer className={classes.tableContainer}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell className={classes.cellsHeader}>
+                                Campaign
+                            </TableCell>
+                            <TableCell
+                                className={classes.cellsHeader}
+                                sx={{ textAlign: 'center' }}
+                            >
+                                Description
+                            </TableCell>
+                            <TableCell className={classes.cellsHeader}>
+                                During
+                            </TableCell>
+                            <TableCell className={classes.cellsHeader}>
+                                Budget
+                            </TableCell>
+                            <TableCell className={classes.cellsHeader}>
+                                Paid
+                            </TableCell>
+                            <TableCell className={classes.cellsHeader}>
+                                Language
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {campaigns.map((row: Campaign) => (
+                            <RowOfTable key={row.id} campaign={row} />
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </StyledCampaign>
     );
 }
-
 
 export default CampaignRenderComponent;

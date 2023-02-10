@@ -1,20 +1,31 @@
-import { TableCell, TableRow } from "@mui/material";
-import React from "react";
+import { TableCell, TableRow } from '@mui/material';
+import React from 'react';
+import { Campaign } from '../App';
+import { campaignClasses as classes } from './CampaignRenderComponentStyle';
 
-function RowOfTable ({ campaign }: any){
-
+function RowOfTable({ campaign }: { campaign: Campaign }) {
     return (
-        <TableRow >
-            <TableCell sx={{fontSize: 18, fontWeight:400, textAlign: "center"}} >{campaign.title}</TableCell>
-            <TableCell sx={{fontSize: 18, fontWeight:400 }} id='description-campaign-body' >{campaign.description}</TableCell>
-            <TableCell sx={{fontSize: 18, fontWeight:400 }} id='during-campaign-body' >{campaign.campaignStart} - {campaign.campaignEnd}</TableCell>
-            <TableCell sx={{fontSize: 18, fontWeight:400, textAlign: "center"}} >{campaign.budget}</TableCell>
-            <TableCell sx={{fontSize: 18, fontWeight:400, textAlign: "center"}} >{campaign.paid}</TableCell>
-            <TableCell sx={{fontSize: 18, fontWeight:400, textAlign: "center"}} >{campaign.language}</TableCell>
+        <TableRow>
+            <TableCell className={classes.centerCellsBody}>
+                {campaign.title}
+            </TableCell>
+            <TableCell className={classes.leftCellsBody}>
+                {campaign.description}
+            </TableCell>
+            <TableCell className={classes.leftCellsBody}>
+                {campaign.campaignStart} - {campaign.campaignEnd}
+            </TableCell>
+            <TableCell className={classes.centerCellsBody}>
+                {campaign.budget}
+            </TableCell>
+            <TableCell className={classes.centerCellsBody}>
+                {campaign.paid}
+            </TableCell>
+            <TableCell className={classes.centerCellsBody}>
+                {campaign.language}
+            </TableCell>
         </TableRow>
-    ); 
+    );
 }
 
-
-// className='campaign-title-body'
 export default RowOfTable;
