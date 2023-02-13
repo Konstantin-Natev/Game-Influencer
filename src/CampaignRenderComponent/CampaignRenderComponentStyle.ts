@@ -5,6 +5,7 @@ const classes = {
     root: 'root',
     tableContainer: 'tableContainer',
     cellsHeader: 'cellsHeader',
+    centerCellHeader: 'centerCellHeader',
     centerCellsBody: 'centerCellsBody',
     leftCellsBody: 'leftCellsBody',
 }
@@ -27,6 +28,12 @@ export const StyledCampaign = styled(Grid)(({ theme }) => ({
     [`& .${classes.cellsHeader}`]: {
         fontSize: '22px',
         fontWeight: 600,
+    },
+
+    [`& .${classes.centerCellHeader}`]: {
+        fontSize: '22px',
+        fontWeight: 600,
+        textAlign: 'center',
     },
 
     [`& .${classes.centerCellsBody}`]: {

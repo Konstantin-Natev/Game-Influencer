@@ -23,10 +23,7 @@ function CampaignRenderComponent({ campaigns }: { campaigns: Campaign[] }) {
                             <TableCell className={classes.cellsHeader}>
                                 Campaign
                             </TableCell>
-                            <TableCell
-                                className={classes.cellsHeader}
-                                sx={{ textAlign: 'center' }}
-                            >
+                            <TableCell className={classes.centerCellHeader}>
                                 Description
                             </TableCell>
                             <TableCell className={classes.cellsHeader}>

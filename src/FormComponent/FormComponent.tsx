@@ -24,7 +24,7 @@ interface DeclareError {
     paid: string
 }
 
-function FormComponent({ addCampaign }: any) {
+function FormComponent({ addCampaign }: { addCampaign: Function }) {
     const justCampaign: Campaign = {
         id: '',
         title: '',
