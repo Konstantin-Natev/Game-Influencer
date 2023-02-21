@@ -10,8 +10,13 @@ import {
     formClasses as classes,
     StyledForm,
 } from './FormComponent/FormComponentStyle'
+import '@algolia/autocomplete-theme-classic'
+import AutoComplete, { Autocomplete } from './AutoComplete/AutoComplete'
+import { getAlgoliaResults } from '@algolia/autocomplete-js'
+import { CampaignItem } from './AutoComplete/CampaignItem'
 
 export interface Campaign {
+    [x: string]: string | undefined
     title: string
     description: string
     campaignStart: string
@@ -45,6 +50,7 @@ function App() {
     const addCampaign = (addCampaignPattern: Campaign) => {
         setCampaign([...campaigns, addCampaignPattern])
     }
+
     return (
         <StyledForm>
             <InstantSearch
@@ -57,6 +63,43 @@ function App() {
                     </Grid>
                     <SearchBox
                         translations={{ placeholder: 'Search for Campaign' }}
+                    />
+                    <Autocomplete
+                        openOnFocus={true}
+                        placeholder="Search..."
+                        getSources={({ query }: { query: any }) => [
+                            {
+                                sourceId: 'campaign',
+                                getItems() {
+                                    return getAlgoliaResults({
+                                        searchClient,
+                                        queries: [
+                                            {
+                                                indexName:
+                                                    'game_influencer_demo',
+                                                query,
+                                            },
+                                        ],
+                                    })
+                                },
+                                templates: {
+                                    item({
+                                        item,
+                                        components,
+                                    }: {
+                                        item: any
+                                        components: any
+                                    }) {
+                                        return (
+                                            <CampaignItem
+                                                hit={item}
+                                                components={components}
+                                            />
+                                        )
+                                    },
+                                },
+                            },
+                        ]}
                     />
                     <Grid item>
                         <CampaignRenderComponent campaigns={campaigns} />

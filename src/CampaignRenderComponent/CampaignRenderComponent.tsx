@@ -14,7 +14,6 @@ import {
     StyledCampaign,
 } from './CampaignRenderComponentStyle'
 import { Hits } from 'react-instantsearch-dom'
-import { margin } from '@mui/system'
 
 function CampaignRenderComponent({ campaigns }: { campaigns: Campaign[] }) {
     const Hit = ({ hit }: { hit: Campaign }) => {
@@ -27,7 +26,7 @@ function CampaignRenderComponent({ campaigns }: { campaigns: Campaign[] }) {
                 <Table>
                     <TableHead>
                         <Grid>
-                            <TableRow sx={{width:900}}>
+                            <TableRow sx={{ width: 900 }}>
                                 <TableCell className={classes.cellsHeader}>
                                     Campaign
                                 </TableCell>
