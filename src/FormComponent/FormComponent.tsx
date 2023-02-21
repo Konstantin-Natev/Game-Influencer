@@ -26,7 +26,7 @@ interface DeclareError {
 
 function FormComponent({ addCampaign }: { addCampaign: Function }) {
     const justCampaign: Campaign = {
-        id: '',
+        objectID: '',
         title: '',
         description: '',
         campaignStart: '',
