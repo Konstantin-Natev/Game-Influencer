@@ -1,19 +1,19 @@
+import React from 'react'
 import { useState } from 'react'
 import './App.css'
 import FormComponent from './FormComponent/FormComponent'
 import CampaignRenderComponent from './CampaignRenderComponent/CampaignRenderComponent'
-import React from 'react'
 import { Grid } from '@mui/material'
-import { InstantSearch, SearchBox, Hits } from 'react-instantsearch-dom'
+import { InstantSearch, SearchBox } from 'react-instantsearch-dom'
+
 import algoliasearch from 'algoliasearch'
-import {
-    formClasses as classes,
-    StyledForm,
-} from './FormComponent/FormComponentStyle'
+import { StyledForm } from './FormComponent/FormComponentStyle'
 import '@algolia/autocomplete-theme-classic'
-import AutoComplete, { Autocomplete } from './AutoComplete/AutoComplete'
+import { Autocomplete } from './AutoComplete/AutoComplete'
 import { getAlgoliaResults } from '@algolia/autocomplete-js'
 import { CampaignItem } from './AutoComplete/CampaignItem'
+import instantsearch from 'instantsearch.js'
+import { createQuerySuggestionsPlugin } from '@algolia/autocomplete-plugin-query-suggestions'
 
 export interface Campaign {
     [x: string]: string | undefined
@@ -41,8 +41,10 @@ const defaultCampaign: Campaign = {
 
 const searchClient = algoliasearch(
     '74TTSJOEZC',
-    '5a2720ff92c39622063721be30263bb6'
+    '42f7d3b90af41b669ae6b9e72bbd98fd'
 )
+
+const index = searchClient.initIndex('game_influencer_demo')
 
 function App() {
     const [campaigns, setCampaign] = useState([defaultCampaign])
@@ -61,13 +63,15 @@ function App() {
                     <Grid item>
                         <FormComponent addCampaign={addCampaign} />
                     </Grid>
+
                     <SearchBox
                         translations={{ placeholder: 'Search for Campaign' }}
                     />
+
                     <Autocomplete
                         openOnFocus={true}
                         placeholder="Search..."
-                        getSources={({ query }: { query: any }) => [
+                        getSources={({ query }: { query: string }) => [
                             {
                                 sourceId: 'campaign',
                                 getItems() {
@@ -87,7 +91,7 @@ function App() {
                                         item,
                                         components,
                                     }: {
-                                        item: any
+                                        item: Campaign
                                         components: any
                                     }) {
                                         return (

@@ -1,4 +1,4 @@
-import { Grid, Link, Typography } from '@mui/material'
+import { Link } from '@mui/material'
 import { Campaign } from '../App'
 import { campaignClasses as classes, StyledCampaign } from './CampaignItemStyle'
 
@@ -11,9 +11,9 @@ export function CampaignItem({
 }) {
     return (
         <StyledCampaign>
-            <Link href={hit.url} className={classes.links}>
+            <Link href={hit.objectID} className={classes.links}>
                 {hit.title}
-                <components.Highlight hit={hit} attribute="campaign" />
+                <components.Highlight hit={hit.title} attribute="campaign" />
             </Link>
         </StyledCampaign>
     )

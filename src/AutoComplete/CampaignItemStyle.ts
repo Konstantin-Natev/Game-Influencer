@@ -12,7 +12,7 @@ export const StyledCampaign = styled(Grid)(({ theme }) => ({
     [`& .${classes.links}`]: {
         textDecoration: 'none',
         color: 'black',
-        fontSize: "18px",
+        fontSize: '18px',
     },
 }))
 
