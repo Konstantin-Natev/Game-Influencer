@@ -14,6 +14,7 @@ import Button from '@mui/material/Button'
 import React, { useState } from 'react'
 import { Campaign } from '../App'
 import { formClasses as classes, StyledForm } from './FormComponentStyle'
+import algoliasearch from 'algoliasearch'
 
 interface DeclareError {
     title: string
@@ -24,9 +25,12 @@ interface DeclareError {
     paid: string
 }
 
+const client = algoliasearch('74TTSJOEZC', '42f7d3b90af41b669ae6b9e72bbd98fd')
+const index = client.initIndex('game_influencer_demo')
+
 function FormComponent({ addCampaign }: { addCampaign: Function }) {
     const justCampaign: Campaign = {
-        id: '',
+        objectID: '',
         title: '',
         description: '',
         campaignStart: '',
@@ -96,6 +100,9 @@ function FormComponent({ addCampaign }: { addCampaign: Function }) {
 
         if (!Object.keys(innerErrors).length) {
             addCampaign(campaignParameters)
+            index.saveObjects([campaignParameters], {
+                autoGenerateObjectIDIfNotExist: true,
+            })
         }
     }
 
